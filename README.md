@@ -10,7 +10,7 @@
 
 ---
 
-### Tool Used : **OWASP ZAP**
+## A.Tool Used : **OWASP ZAP** :-
 
 ### Target Sample Web Application : **OWASP JUICE SHOP**
 
@@ -129,10 +129,9 @@ Review the Results:
 
 [Vulnerability Assessment Report Task 1 - OWASP ZAP.pdf](https://github.com/user-attachments/files/18533382/Vulnerability.Assessment.Report.Task.1.-.OWASP.ZAP.pdf)
 
------
+---
 
-
-### Tool Used : **Nmap**
+## B.Tool Used : **Nmap** :-
 
 
 
