@@ -10,7 +10,8 @@
 
 ---
 
-## A.Tool Used : **OWASP ZAP** :-
+## A. Tool Used : **OWASP ZAP** :- 
+### **ZAP also called Zed Attack Proxy is an open-source web application security testing tool that offers a range of features, including vulnerability scanning, proxying, and fuzzing.**
 
 ### Target Sample Web Application : **OWASP JUICE SHOP**
 
@@ -131,7 +132,7 @@ Review the Results:
 
 ---
 
-## B.Tool Used : **Nmap** :-
+## B. Tool Used : **Nmap** :-
 
 
 
