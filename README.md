@@ -1,11 +1,11 @@
 ## FUTURE_CS_01
 
-### Hello here is the walkthrough documentation of how I completed Task 1 of the Cyber Security Internship :-
+### Hi here is the walkthrough documentation of how I completed Task 1 of the Cyber Security Internship :-
 
 ### I have made use of my <a href="https://github.com/ABRM2002/BASIC-HOME-LAB/tree/main">**HOME LAB**</a> for completing this task which includes my Windows and Kali Linux as 2 of my virtual machines and I start off by Installing the tool OWASP ZAP on my Kali machine via Official Website : <a href="https://www.zaproxy.org/download"> OWASP ZAP </a>
 ---
  
-### Task 1 : **Perform a Vulnerability Assessment of a Sample Web Application**
+# Task 1 : **Perform a Vulnerability Assessment of a Sample Web Application**
 ![image](https://github.com/user-attachments/assets/eb70a5d2-204d-416e-8c90-1bb03ff6c9f1)
 
 ---
@@ -41,7 +41,9 @@
 
 ### 2. Pull and Run OWASP Juice Shop: Run the following command to download and start OWASP Juice Shop via Docker:-
 
-- sudo docker run -d -p 3000:3000 bkimminich/juice-shop
+- sudo docker pull bkimminich/juice-shop - This command downloads the official OWASP Juice Shop image from Docker Hub.
+
+- sudo docker run -d -p 3000:3000 bkimminich/juice-shop - After pulling the image, starts the Juice Shop container.
 
 ### Explanation of Each Part:
 
@@ -68,6 +70,9 @@ The second 3000 is the port inside the Docker container where the Juice Shop web
 - This is the Docker image name. bkimminich/juice-shop refers to the official Docker image for OWASP Juice Shop, which is maintained by Björn Kimminich (the creator of Juice Shop).
 If this image isn’t already downloaded to your machine, Docker will pull it from Docker Hub (an online repository of Docker images) before running the container.
 
+![Screenshot 2025-01-24 142310](https://github.com/user-attachments/assets/063056e3-900b-4d36-b4d0-0cb6b5ac8a88)
+
+
 ---
 
 ## 3. Access Juice Shop: Once the container is running, you can access the Juice Shop web application by navigating to:-
@@ -78,5 +83,58 @@ If this image isn’t already downloaded to your machine, Docker will pull it fr
 
 ## Step 2: Perform a vulnerability assessment on the OWASP Juice Shop :-
 
-1: Set the Target URL (OWASP Juice Shop)
+- Set the Target URL (OWASP Juice Shop):-
+Enter the target URL:
+
+In OWASP ZAP, you’ll see a browser-like interface at the top after selecting Automated Scan.
+
+
+![Screenshot 2025-01-24 142445](https://github.com/user-attachments/assets/bf0dfa84-866a-4d17-82f4-af09e2b71156)
+
+
+- Enter the target URL of Juice Shop (running on Docker): http://localhost:3000
+
+- Then click on attack it will start the 2 types of scans
+
+- Spider Scan:
+
+This will crawl the Juice Shop application to identify all reachable pages.
+
+- Active Scan:
+
+This scan will actively test for vulnerabilities like SQL Injection, XSS, and more.
+Review the Results:
+
+![Screenshot 2025-01-24 142840](https://github.com/user-attachments/assets/1e185a85-e4f0-4148-af4e-fb593e5051ca)
+
+
+- Once the scan completes, go to the Alerts tab.
+
+- ZAP will list vulnerabilities along with their severity (e.g., Low, Medium, High).
+
+- Document these vulnerabilities for your report.
+
+![Screenshot 2025-01-24 143147](https://github.com/user-attachments/assets/6e5dcdd5-33de-4959-a274-86563e075586)
+
+
+---
+
+## Key Findings:
+
+- Number of Medium-Risk Vulnerabilities: 3
+- Number of Low-Risk Vulnerabilities: 2
+- Number of Informational Vulnerabilities: 2
+
+## **Vulnerability Assessment Report** :-
+
+[Vulnerability Assessment Report Task 1 - OWASP ZAP.pdf](https://github.com/user-attachments/files/18533382/Vulnerability.Assessment.Report.Task.1.-.OWASP.ZAP.pdf)
+
+-----
+
+
+### Tool Used : **Nmap**
+
+
+
+
 
