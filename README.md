@@ -285,3 +285,9 @@ Nmap vulnerability scripts may sometimes fail to detect certain flaws if the app
 
 Juice Shop vulnerabilities are best tested manually or through specialized tools like OWASP ZAP, Burp Suite, or Nikto, which can probe for Cross-Site Scripting (XSS), SQL Injection, Command Injection, and other flaws more effectively.
 For example, testing for authentication bypass or account enumeration in Juice Shop requires more than just automated scripts.
+
+---
+
+## C. Tool Used : **BurpSuite** :-
+
+
