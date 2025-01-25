@@ -152,8 +152,8 @@ Expected Outcome: Port 3000 should show as open if OWASP Juice Shop is running.
 
 ---
 
-- **Service version detection on port 3000:
-**
+- **Service version detection on port 3000:**
+
 Command: nmap -sV -p 3000 localhost
 
 Purpose: Tries to detect the version of the service running on port 3000.
@@ -172,8 +172,8 @@ Expected Outcome: If the machine is a local VM or container, Nmap might not alwa
 
 ---
 
-- **Vulnerability scan on port 3000:
-**
+- **Vulnerability scan on port 3000:**
+
 Command: nmap --script vuln -p 3000 localhost
 
 Purpose: Runs a general vulnerability scan to find common security flaws.
@@ -182,8 +182,8 @@ Expected Outcome: If the OWASP Juice Shop is running, vulnerabilities may not be
 
 ---
 
-- **Web vulnerability scanning on port 3000:
-**
+- **Web vulnerability scanning on port 3000:**
+
 Command: nmap --script http-sql-injection,http-enum,http-vuln-cve2017-5638 -p 3000 localhost
 
 Purpose: Uses specific Nmap scripts to check for common web vulnerabilities like SQL injection or known CVE vulnerabilities.
