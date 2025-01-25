@@ -139,3 +139,52 @@ Review the Results:
 
 
 
+
+## Summary of Nmap Commands for Juice Shop on Port 3000 :-
+
+- Basic Nmap scan on port 3000:
+
+Command: nmap -p 3000 localhost
+Purpose: Scans port 3000 to check if it's open.
+Expected Outcome: Port 3000 should show as open if OWASP Juice Shop is running.
+
+---
+
+- Service version detection on port 3000:
+
+Command: nmap -sV -p 3000 localhost
+Purpose: Tries to detect the version of the service running on port 3000.
+Expected Outcome: If Juice Shop is running, the service version detection may not yield detailed results due to custom configurations (e.g., Node.js). Sometimes the service might be identified as HTTP or web server, but exact details may be missed.
+
+---
+
+- Operating system detection (optional) on port 3000:
+
+Command: nmap -O -p 3000 localhost
+Purpose: Attempts to detect the operating system running on the machine hosting the service.
+Expected Outcome: If the machine is a local VM or container, Nmap might not always identify the OS precisely, especially if it's a specialized system like Kali Linux or a Docker container.
+
+---
+
+- Vulnerability scan on port 3000:
+
+Command: nmap --script vuln -p 3000 localhost
+Purpose: Runs a general vulnerability scan to find common security flaws.
+Expected Outcome: If the OWASP Juice Shop is running, vulnerabilities may not be identified unless they're specifically known or targeted by one of the vuln scripts. Juice Shop itself is intentionally insecure, so many vulnerabilities will require targeted scanning beyond basic Nmap scripts.
+
+---
+
+- Web vulnerability scanning on port 3000:
+
+Command: nmap --script http-sql-injection,http-enum,http-vuln-cve2017-5638 -p 3000 localhost
+Purpose: Uses specific Nmap scripts to check for common web vulnerabilities like SQL injection or known CVE vulnerabilities.
+Expected Outcome: Juice Shop is designed with multiple vulnerabilities for educational purposes, but not all scanners might detect them unless they focus on specific issues (e.g., authentication bypass, XXS, etc.).
+
+---
+
+- HTTP service enumeration on port 3000:
+
+Command: nmap --script http-enum -p 3000 localhost
+Purpose: Enumerates HTTP-related services (directories, common issues).
+Expected Outcome: Nmap will try to identify any public directories or misconfigurations. However, Juice Shop might not trigger any obvious findings unless there are misconfigurations or exposed admin panels.
+
