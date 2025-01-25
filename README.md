@@ -154,28 +154,28 @@ This command pings all hosts in the network range to check which ones are up.
 
 ---
 
-**Port Scanning**: Scan for open ports on a target host.
+- **Port Scanning**: Scan for open ports on a target host.
 
 Command : nmap -p 80,443 localhost
 Scans ports 80 and 443 on the localhost.
 
 ---
 
-- Service Version Detection: Determine the versions of services running on open ports.
+- **Service Version Detection**: Determine the versions of services running on open ports.
 
 Command : nmap -sV localhost
 Scans and attempts to identify the version of services running on open ports.
 
 ---
 
-- Operating System Detection: Identify the operating system of a remote host.
+- **Operating System Detection**: Identify the operating system of a remote host.
 
 Command : nmap -O localhost
 Attempts to detect the OS of the target system.
 
 ---
 
-- Vulnerability Scanning: Scan for known vulnerabilities using Nmap scripts.
+- **Vulnerability Scanning**: Scan for known vulnerabilities using Nmap scripts.
 
 
 Command : nmap --script vuln localhost
@@ -183,7 +183,7 @@ Runs vulnerability scanning scripts on the target.
 
 ---
 
-- Service Enumeration: Enumerate services running on a particular port, often useful for web applications.
+- **Service Enumeration**: Enumerate services running on a particular port, often useful for web applications.
 
 Command : nmap --script http-enum -p 80 localhost
 Uses Nmap scripts to enumerate HTTP services on port 80.
