@@ -142,7 +142,7 @@ Review the Results:
 
 ## Summary of Nmap Commands for Juice Shop on Port 3000 :-
 
--** Basic Nmap scan on port 3000:**
+- **Basic Nmap scan on port 3000:**
 
 Command: nmap -p 3000 localhost
 
