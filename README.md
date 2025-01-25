@@ -135,10 +135,60 @@ Review the Results:
 
 ## B. Tool Used : **Nmap** :-
 
+- **Nmap (Network Mapper)** : Is an open-source tool used for network discovery and security auditing.It is primarily used to :-
+
+- **Discover Hosts and Services**: Nmap identifies devices (hosts) on a network and determines which services (e.g., HTTP, FTP) are running on them.
+
+- **Detect Operating Systems**: Nmap can attempt to detect the operating system (OS) running on remote devices.
+
+- **Security Auditing**: Nmap helps in identifying potential vulnerabilities and misconfigurations in network devices and services.
+
+---
+
+## Common Nmap Functions :-
+
+- **Host Discovery**: Find live hosts on a network.
+
+Command : nmap -sn 192.168.1.0/24
+This command pings all hosts in the network range to check which ones are up.
+
+---
+
+**Port Scanning**: Scan for open ports on a target host.
+
+Command : nmap -p 80,443 localhost
+Scans ports 80 and 443 on the localhost.
+
+---
+
+- Service Version Detection: Determine the versions of services running on open ports.
+
+Command : nmap -sV localhost
+Scans and attempts to identify the version of services running on open ports.
+
+---
+
+- Operating System Detection: Identify the operating system of a remote host.
+
+Command : nmap -O localhost
+Attempts to detect the OS of the target system.
+
+---
+
+- Vulnerability Scanning: Scan for known vulnerabilities using Nmap scripts.
 
 
+Command : nmap --script vuln localhost
+Runs vulnerability scanning scripts on the target.
 
+---
 
+- Service Enumeration: Enumerate services running on a particular port, often useful for web applications.
+
+Command : nmap --script http-enum -p 80 localhost
+Uses Nmap scripts to enumerate HTTP services on port 80.
+
+---
 
 ## Summary of Nmap Commands for Juice Shop on Port 3000 :-
 
@@ -160,6 +210,10 @@ Purpose: Tries to detect the version of the service running on port 3000.
 
 Expected Outcome: If Juice Shop is running, the service version detection may not yield detailed results due to custom configurations (e.g., Node.js). Sometimes the service might be identified as HTTP or web server, but exact details may be missed.
 
+
+![Screenshot 2025-01-25 221256](https://github.com/user-attachments/assets/08817da4-2c26-4e7b-8968-05e24c016e82)
+
+
 ---
 
 - **Operating system detection on port 3000:**
@@ -169,6 +223,7 @@ Command: nmap -O -p 3000 localhost
 Purpose: Attempts to detect the operating system running on the machine hosting the service.
 
 Expected Outcome: If the machine is a local VM or container, Nmap might not always identify the OS precisely, especially if it's a specialized system like Kali Linux or a Docker container.
+
 
 ---
 
@@ -190,6 +245,9 @@ Purpose: Uses specific Nmap scripts to check for common web vulnerabilities like
 
 Expected Outcome: Juice Shop is designed with multiple vulnerabilities for educational purposes, but not all scanners might detect them unless they focus on specific issues (e.g., authentication bypass, XXS, etc.).
 
+![Screenshot 2025-01-25 221417](https://github.com/user-attachments/assets/ef16e928-3fb5-43cb-a99c-3982517478fa)
+
+
 ---
 
 - **HTTP service enumeration on port 3000:**
@@ -200,3 +258,30 @@ Purpose: Enumerates HTTP-related services (directories, common issues).
 
 Expected Outcome: Nmap will try to identify any public directories or misconfigurations. However, Juice Shop might not trigger any obvious findings unless there are misconfigurations or exposed admin panels.
 
+---
+
+## Why No Vulnerabilities Were Found :-
+
+- **Juice Shop Configuration:**
+
+OWASP Juice Shop is built to be an insecure web application with many vulnerabilities, but they are often not detected by default tools unless specific attack vectors are tested.
+Juice Shop's vulnerabilities are intentionally subtle and designed for manual testing or specific toolkits. Nmap’s built-in vuln scripts may not necessarily cover all the possible flaws in Juice Shop.
+
+---
+
+- **Nmap’s Limited Web Vulnerability Coverage:**
+
+While Nmap can detect many vulnerabilities with its script scanning (http-sql-injection, http-enum, etc.), it does not cover all possible vulnerabilities, especially those related to business logic flaws or client-side issues (like JavaScript vulnerabilities).
+
+---
+
+- **False Negative or Misconfiguration:**
+
+Nmap vulnerability scripts may sometimes fail to detect certain flaws if the application has been slightly modified or has specific settings that reduce its attack surface.
+
+---
+
+- **Manual Testing Required:**
+
+Juice Shop vulnerabilities are best tested manually or through specialized tools like OWASP ZAP, Burp Suite, or Nikto, which can probe for Cross-Site Scripting (XSS), SQL Injection, Command Injection, and other flaws more effectively.
+For example, testing for authentication bypass or account enumeration in Juice Shop requires more than just automated scripts.
