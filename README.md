@@ -334,6 +334,14 @@ The vulnerability scan conducted using Nmap uncovered several risks, including u
 
 ---
 
+## **Vulnerability Assessment Report** :-
+
+[Vulnerability Assessment Report Task 1 - Nmap.pdf](https://github.com/user-attachments/files/18549513/Vulnerability.Assessment.Report.Task.1.-.Nmap.pdf)
+
+---
+
 ## C. Tool Used : **BurpSuite** :-
+
+
 
 
