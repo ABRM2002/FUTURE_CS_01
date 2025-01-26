@@ -317,8 +317,9 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 ---
 
-5. Conclusion
-The vulnerability scan conducted using Nmap uncovered several risks, including unnecessary services, the use of HTTP without encryption, and potential misconfigurations in the OWASP Juice Shop application.
+## Conclusion :-
+
+- The vulnerability scan conducted using Nmap uncovered several risks, including unnecessary services, the use of HTTP without encryption, and potential misconfigurations in the OWASP Juice Shop application.
 
 ## Key Recommendations to Mitigate Identified Risks :-
 
@@ -341,6 +342,7 @@ The vulnerability scan conducted using Nmap uncovered several risks, including u
 ---
 
 ## C. Tool Used : **BurpSuite** :-
+
 
 
 
