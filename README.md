@@ -301,6 +301,9 @@ Both of these commands will give you the PID (Process ID) of the application lis
 
 ---
 
+![image](https://github.com/user-attachments/assets/0efdba69-2737-481a-aea4-fe068596233a)
+
+
 - Service Version Detection: You can use the -sV flag, which enables version detection to get details about the service running on the open port.
 
 Command : sudo nmap -sV -p 39459 localhost 3000
@@ -324,7 +327,7 @@ These commands should help you gather more detailed information about the servic
 
 ## Service Misconfiguration and Risks Identified :-
 
-- Unnecessary Open Golang HTTP Service (Port 39459/tcp)
+- Unnecessary Open Golang HTTP Service (Port 39459/TCP)
 
 - Risk: The presence of an open HTTP service on port 39459 (Golang net/http) is concerning. This service seems to be misconfigured or not in use, as it returns 404 Not Found or 400 Bad Request responses. Attackers could potentially leverage it if left unmonitored, as it could be used for further attacks like a denial of service (DoS) or information gathering.
 
@@ -335,7 +338,7 @@ Monitor service behavior regularly to ensure it doesn't cause unexpected issues.
 
 ---
 
-- Exposure of OWASP Juice Shop on Port 3000
+- Exposure of OWASP Juice Shop on Port localhost 3000
 
 - Risk: The OWASP Juice Shop web application running on port 3000 may be vulnerable to several OWASP Top 10 vulnerabilities (e.g., SQL Injection, Cross-Site Scripting (XSS), etc.). As Juice Shop is designed to be insecure for testing purposes, it is crucial to assess the application's own security measures.
 
@@ -346,7 +349,7 @@ Apply security patches to the Juice Shop application and other web services it i
 
 ---
 
-- Lack of Service Information and Detection for Port 3000
+- Lack of Service Information and Detection for Port localhost 3000
 
 - Risk: The service running on port 3000 did not return specific service information in the Nmap scan. While this is often a tactic to reduce information leakage, it can also indicate a potential misconfiguration that prevents proper identification of the service.
 
@@ -356,7 +359,7 @@ Limit information disclosure in HTTP headers to avoid giving attackers unnecessa
 
 ---
 
-- Insecure HTTP Service on Port 3000
+- Insecure HTTP Service on Port localhost 3000
 
 - Risk: The service on port 3000 is accessible without encryption (HTTP instead of HTTPS), which means data could be intercepted in transit by an attacker. This exposes sensitive data such as login credentials to man-in-the-middle (MITM) attacks.
 
