@@ -190,7 +190,7 @@ Uses Nmap scripts to enumerate HTTP services on port 80.
 
 ---
 
-## Summary of Nmap Commands for Juice Shop on Port 3000 :-
+## Summary of Nmap Commands for Juice Shop on Port localhost 3000 :-
 
 - **Basic Nmap scan on port 3000:**
 
@@ -216,40 +216,7 @@ Expected Outcome: If Juice Shop is running, the service version detection may no
 
 ---
 
-- Confirm Nmap Command:
-
-If the service is running but nmap still doesn't detect it, ensure you’re running the correct scan. You could try scanning a range of ports or the entire localhost with:
-
-Command : sudo nmap -p- localhost
-
-- Port 39459 on localhost is open, but the service is unknown. This might be unrelated to OWASP Juice Shop, or it could be a different service running on your machine.
-
-To identify and resolve the unknown service running on port 39459, you can follow these steps:
-
-1. Identify the Process Using Port 39459
-Use lsof (List Open Files) or netstat to identify which process is listening on port 39459:
-
-Using lsof:
-
-Command : sudo lsof -i :39459
-This will show the process name and PID associated with port 39459.
-
-Using netstat:
-
-Command : sudo netstat -tulnp | grep 39459
-
-Or you can use ss:
-
-Command : sudo ss -tulnp | grep 39459
-
-Both of these commands will give you the PID (Process ID) of the application listening on that port, as well as the service name (if available).
-
-![Screenshot 2025-01-26 132149](https://github.com/user-attachments/assets/7fc4bc72-d26d-46d9-beaa-0df8d9ce1e5c)
-
-
----
-
-- **Operating system detection on port 3000:**
+- **Operating system detection on port localhost 3000:**
 
 Command: nmap -O -p 3000 localhost
 
@@ -260,7 +227,7 @@ Expected Outcome: If the machine is a local VM or container, Nmap might not alwa
 
 ---
 
-- **Vulnerability scan on port 3000:**
+- **Vulnerability scan on port localhost 3000:**
 
 Command: nmap --script vuln -p 3000 localhost
 
@@ -270,7 +237,7 @@ Expected Outcome: If the OWASP Juice Shop is running, vulnerabilities may not be
 
 ---
 
-- **Web vulnerability scanning on port 3000:**
+- **Web vulnerability scanning on port localhost 3000:**
 
 Command: nmap --script http-sql-injection,http-enum,http-vuln-cve2017-5638 -p 3000 localhost
 
@@ -283,7 +250,7 @@ Expected Outcome: Juice Shop is designed with multiple vulnerabilities for educa
 
 ---
 
-- **HTTP service enumeration on port 3000:**
+- **HTTP service enumeration on port localhost 3000:**
 
 Command: nmap --script http-enum -p 3000 localhost
 
@@ -293,31 +260,126 @@ Expected Outcome: Nmap will try to identify any public directories or misconfigu
 
 ---
 
-## Why No Vulnerabilities Were Found :-
+- Confirm Nmap Command:
 
-- **Juice Shop Configuration:**
+If the service is running but nmap still doesn't detect it, ensure you’re running the correct scan. You could try scanning a range of ports or the entire localhost with:
 
-OWASP Juice Shop is built to be an insecure web application with many vulnerabilities, but they are often not detected by default tools unless specific attack vectors are tested.
-Juice Shop's vulnerabilities are intentionally subtle and designed for manual testing or specific toolkits. Nmap’s built-in vuln scripts may not necessarily cover all the possible flaws in Juice Shop.
+Command : sudo nmap -p- localhost
 
----
-
-- **Nmap’s Limited Web Vulnerability Coverage:**
-
-While Nmap can detect many vulnerabilities with its script scanning (http-sql-injection, http-enum, etc.), it does not cover all possible vulnerabilities, especially those related to business logic flaws or client-side issues (like JavaScript vulnerabilities).
+- Port 39459 on localhost is open, but the service is unknown. This might be unrelated to OWASP Juice Shop, or it could be a different service running on your machine.
 
 ---
 
-- **False Negative or Misconfiguration:**
+To identify and resolve the unknown service running on port 39459, you can follow these steps:
 
-Nmap vulnerability scripts may sometimes fail to detect certain flaws if the application has been slightly modified or has specific settings that reduce its attack surface.
+- Identify the Process Using Port 39459 :-
+
+Use lsof (List Open Files) or netstat to identify which process is listening on port 39459:
+
+- Using lsof:
+
+Command : sudo lsof -i :39459
+
+This will show the process name and PID associated with port 39459.
 
 ---
 
-- **Manual Testing Required:**
+- Using netstat:
 
-Juice Shop vulnerabilities are best tested manually or through specialized tools like OWASP ZAP, Burp Suite, or Nikto, which can probe for Cross-Site Scripting (XSS), SQL Injection, Command Injection, and other flaws more effectively.
-For example, testing for authentication bypass or account enumeration in Juice Shop requires more than just automated scripts.
+Command : sudo netstat -tulnp | grep 39459
+
+---
+
+- Or you can use ss:
+
+Command : sudo ss -tulnp | grep 39459
+
+Both of these commands will give you the PID (Process ID) of the application listening on that port, as well as the service name (if available).
+
+![Screenshot 2025-01-26 132149](https://github.com/user-attachments/assets/7fc4bc72-d26d-46d9-beaa-0df8d9ce1e5c)
+
+
+---
+
+- Service Version Detection: You can use the -sV flag, which enables version detection to get details about the service running on the open port.
+
+Command : sudo nmap -sV -p 39459 localhost 3000
+This will attempt to identify the service and version running on port 39459.
+
+---
+
+-  Service and Script Scan: You can combine version detection with the -sC option to run default scripts that provide additional information about the service.
+
+Command : sudo nmap -sV -sC -p 39459 localhost 3000
+This will not only try to detect the service version but also run some Nmap scripts (like those for banner grabbing or identifying vulnerabilities).
+
+---
+
+- Aggressive Scan Mode: You can use the -A option for a more aggressive scan, which includes OS detection, version detection, script scanning, and traceroute.
+
+Command : sudo nmap -A -p 39459 localhost 3000
+These commands should help you gather more detailed information about the service running on port 39459 without needing manual investigation steps.
+
+---
+
+## Service Misconfiguration and Risks Identified :-
+
+- Unnecessary Open Golang HTTP Service (Port 39459/tcp)
+
+- Risk: The presence of an open HTTP service on port 39459 (Golang net/http) is concerning. This service seems to be misconfigured or not in use, as it returns 404 Not Found or 400 Bad Request responses. Attackers could potentially leverage it if left unmonitored, as it could be used for further attacks like a denial of service (DoS) or information gathering.
+
+- Recommendation:
+Disable or remove the service on port 39459 if it is unnecessary.
+If the service is required, ensure it is properly configured, secure, and does not expose any sensitive information.
+Monitor service behavior regularly to ensure it doesn't cause unexpected issues.
+
+---
+
+- Exposure of OWASP Juice Shop on Port 3000
+
+- Risk: The OWASP Juice Shop web application running on port 3000 may be vulnerable to several OWASP Top 10 vulnerabilities (e.g., SQL Injection, Cross-Site Scripting (XSS), etc.). As Juice Shop is designed to be insecure for testing purposes, it is crucial to assess the application's own security measures.
+
+- Recommendation:
+Conduct a web application security assessment (e.g., using OWASP ZAP or Burp Suite) to identify vulnerabilities such as SQL injection, XSS, and others.
+Ensure proper input validation and sanitization are applied in the application to prevent injection attacks.
+Apply security patches to the Juice Shop application and other web services it integrates with.
+
+---
+
+- Lack of Service Information and Detection for Port 3000
+
+- Risk: The service running on port 3000 did not return specific service information in the Nmap scan. While this is often a tactic to reduce information leakage, it can also indicate a potential misconfiguration that prevents proper identification of the service.
+
+- Recommendation:
+Ensure that the service on port 3000 is properly configured and its responses are appropriate for security auditing.
+Limit information disclosure in HTTP headers to avoid giving attackers unnecessary details that could be exploited (e.g., application server details, version numbers).
+
+---
+
+- Insecure HTTP Service on Port 3000
+
+- Risk: The service on port 3000 is accessible without encryption (HTTP instead of HTTPS), which means data could be intercepted in transit by an attacker. This exposes sensitive data such as login credentials to man-in-the-middle (MITM) attacks.
+
+- Recommendation:
+Implement HTTPS to encrypt communication between the client and the server.
+Obtain and configure a valid SSL/TLS certificate for the server to secure web traffic and prevent interception.
+
+---
+
+5. Conclusion
+The vulnerability scan conducted using Nmap uncovered several risks, including unnecessary services, the use of HTTP without encryption, and potential misconfigurations in the OWASP Juice Shop application.
+
+## Key Recommendations to Mitigate Identified Risks :-
+
+- Disable unused services, particularly the Golang net/http server on port 39459.
+
+- Secure the OWASP Juice Shop application with HTTPS, ensuring encrypted communication.
+
+- Regularly perform web application testing to identify and mitigate security vulnerabilities.
+
+- Monitor and manage services to ensure they do not leak unnecessary information or expose risks.
+
+- Apply security patches to services and applications to reduce the attack surface.
 
 ---
 
