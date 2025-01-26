@@ -192,6 +192,8 @@ Uses Nmap scripts to enumerate HTTP services on port 80.
 
 ## Summary of Nmap Commands for Juice Shop on Port localhost 3000 :-
 
+## Step 1 : Do a basic Nmap Scan :-
+
 - **Basic Nmap scan on port 3000:**
 
 Command: nmap -p 3000 localhost
@@ -201,6 +203,8 @@ Purpose: Scans port 3000 to check if it's open.
 Expected Outcome: Port 3000 should show as open if OWASP Juice Shop is running.
 
 ---
+
+## Step 2 : Do a Service Version Detection Scan :-
 
 - **Service version detection on port 3000:**
 
@@ -216,6 +220,8 @@ Expected Outcome: If Juice Shop is running, the service version detection may no
 
 ---
 
+## Step 3 : Do an OS Detection Scan :-
+
 - **Operating system detection on port localhost 3000:**
 
 Command: nmap -O -p 3000 localhost
@@ -226,6 +232,8 @@ Expected Outcome: If the machine is a local VM or container, Nmap might not alwa
 
 
 ---
+
+## Step 4 : Do Vulnerability Scans
 
 - **Vulnerability scan on port localhost 3000:**
 
@@ -250,26 +258,14 @@ Expected Outcome: Juice Shop is designed with multiple vulnerabilities for educa
 
 ---
 
+## Step 5 : Do a Service Version Detection Scan on the unknown port 39459 :-
+
 - Service Version Detection: You can use the -sV flag, which enables version detection to get details about the service running on the open port.
 
 Command : sudo nmap -sV -p 39459 localhost 3000
 This will attempt to identify the service and version running on port 39459.
 
 ![image](https://github.com/user-attachments/assets/0efdba69-2737-481a-aea4-fe068596233a)
-
----
-
--  Service and Script Scan: You can combine version detection with the -sC option to run default scripts that provide additional information about the service.
-
-Command : sudo nmap -sV -sC -p 39459 localhost 3000
-This will not only try to detect the service version but also run some Nmap scripts (like those for banner grabbing or identifying vulnerabilities).
-
----
-
-- Aggressive Scan Mode: You can use the -A option for a more aggressive scan, which includes OS detection, version detection, script scanning, and traceroute.
-
-Command : sudo nmap -A -p 39459 localhost 3000
-These commands should help you gather more detailed information about the service running on port 39459 without needing manual investigation steps.
 
 ---
 
