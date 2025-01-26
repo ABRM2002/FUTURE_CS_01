@@ -250,64 +250,12 @@ Expected Outcome: Juice Shop is designed with multiple vulnerabilities for educa
 
 ---
 
-- **HTTP service enumeration on port localhost 3000:**
-
-Command: nmap --script http-enum -p 3000 localhost
-
-Purpose: Enumerates HTTP-related services (directories, common issues).
-
-Expected Outcome: Nmap will try to identify any public directories or misconfigurations. However, Juice Shop might not trigger any obvious findings unless there are misconfigurations or exposed admin panels.
-
----
-
-- Confirm Nmap Command:
-
-If the service is running but nmap still doesn't detect it, ensure you’re running the correct scan. You could try scanning a range of ports or the entire localhost with:
-
-Command : sudo nmap -p- localhost
-
-- Port 39459 on localhost is open, but the service is unknown. This might be unrelated to OWASP Juice Shop, or it could be a different service running on your machine.
-
----
-
-To identify and resolve the unknown service running on port 39459, you can follow these steps:
-
-- Identify the Process Using Port 39459 :-
-
-Use lsof (List Open Files) or netstat to identify which process is listening on port 39459:
-
-- Using lsof:
-
-Command : sudo lsof -i :39459
-
-This will show the process name and PID associated with port 39459.
-
----
-
-- Using netstat:
-
-Command : sudo netstat -tulnp | grep 39459
-
----
-
-- Or you can use ss:
-
-Command : sudo ss -tulnp | grep 39459
-
-Both of these commands will give you the PID (Process ID) of the application listening on that port, as well as the service name (if available).
-
-![Screenshot 2025-01-26 132149](https://github.com/user-attachments/assets/7fc4bc72-d26d-46d9-beaa-0df8d9ce1e5c)
-
-
----
-
-![image](https://github.com/user-attachments/assets/0efdba69-2737-481a-aea4-fe068596233a)
-
-
 - Service Version Detection: You can use the -sV flag, which enables version detection to get details about the service running on the open port.
 
 Command : sudo nmap -sV -p 39459 localhost 3000
 This will attempt to identify the service and version running on port 39459.
+
+![image](https://github.com/user-attachments/assets/0efdba69-2737-481a-aea4-fe068596233a)
 
 ---
 
