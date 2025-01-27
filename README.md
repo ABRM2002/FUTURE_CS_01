@@ -23,7 +23,7 @@
 
 ---
 
-### Steps:-
+### Steps :-
 
 ### Step 1: Install OWASP Juice Shop Using Docker :-
 
