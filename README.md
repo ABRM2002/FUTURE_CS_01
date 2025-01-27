@@ -485,7 +485,7 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 - Enter the following XSS payload in the search field:
 
-- Payload: <script>alert('XSS')</script> or <img src="x" onerror="alert('XSS')">
+- Payload: <script>alert('XSS')</script> or <imgsrc="x" onerror="alert('XSS')">
 
 - Submit the search. Burp Suite will intercept the request.
 
