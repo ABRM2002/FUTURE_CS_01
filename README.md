@@ -339,7 +339,29 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 ## C. Tool Used : **BurpSuite** :-
 
+- Burp Suite is a tool used for testing the security of web applications.
+ 
+- It works by intercepting and analyzing the communication between your browser and a website.
 
+- This allows security testers to check if the website has any vulnerabilities, like **SQL injection** or **Cross-Site Scripting (XSS)**.
+
+- Burp Suite helps you manually test, modify requests, and even run automated scans (in paid versions) to find potential security issues.
+
+---
+
+## Step 1 :Set up Burp Suite and Browser Proxy :-
+
+- Start Burp Suite Community Edition on your Kali Linux VM.
+
+- Go to Proxy > Options and confirm that Burp is listening on 127.0.0.1:8080.
+
+- Open Chromium and configure the proxy settings:
+
+- Settings > System > Open proxy settings.
+
+- Set the manual proxy to 127.0.0.1 and port to 8080.
+
+- Ensure that Burp can intercept traffic by navigating to http://localhost:3000 (Juice Shop's URL) in Chromium.
 
 
 
