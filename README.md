@@ -349,7 +349,7 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 ---
 
-## Step 1 :Set up Burp Suite and Browser Proxy :-
+## Step 1: Set up Burp Suite and Browser Proxy :-
 
 - Start Burp Suite Community Edition on your Kali Linux VM.
 
@@ -362,6 +362,66 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 - Set the manual proxy to 127.0.0.1 and port to 8080.
 
 - Ensure that Burp can intercept traffic by navigating to http://localhost:3000 (Juice Shop's URL) in Chromium.
+
+---
+
+## Step 2: Launch OWASP Juice Shop
+
+- Ensure the Juice Shop is running. Access it in your browser via http://localhost:3000.
+
+- Burp Suite should now be able to intercept and inspect the traffic between your browser and Juice Shop.
+
+---
+
+## Step 3 : Intercept and Analyze HTTP Requests (Example: Login Request)
+
+- In Burp Suite, ensure Intercept is ON (found under Proxy > Intercept).
+
+- Go to the login page of OWASP Juice Shop (http://localhost:3000/#/login).
+
+- Enter any test credentials (e.g., admin@example.com with a random password) and click Log in.
+
+- Burp Suite will intercept the login request. Review the captured HTTP request:
+
+- Forward the request in Burp, and analyze how the app responds.
+
+---
+
+## Step 4 : SQL Injection Example (Manual Testing using Repeater)
+
+- After intercepting a request (e.g., the login request), right-click it and select Send to Repeater.
+
+- Go to the Repeater tab, where you can edit and resend the request.
+
+- In the POST data (JSON body), modify the email field to inject a SQL payload:
+
+- Payload: ' OR 1=1--
+
+- Click Send to submit the request with the injected payload.
+
+- If the application is vulnerable to SQL Injection, you might see a successful login even though you entered an incorrect password.
+
+- The response will indicate if you’ve bypassed authentication.
+
+---
+
+## Step 5 : XSS Cross Site Scripting Example
+
+- In Juice Shop, go to the "Search" field at the top of the page.
+
+- In Burp Suite, ensure Intercept is ON.
+
+- Enter the following XSS payload in the search field:
+
+- Payload: <script>alert('XSS')</script>
+
+- Submit the search. Burp Suite will intercept the request.
+
+- Right-click the request and select Send to Repeater.
+
+- In the Repeater tab, resend the modified request with the XSS payload.
+
+- If the application is vulnerable to Reflected XSS, the JavaScript payload will execute, and you should see a popup with the message XSS in your browser.
 
 
 
