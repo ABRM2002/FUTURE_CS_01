@@ -412,9 +412,67 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 - The response will indicate if you’ve bypassed authentication.
 
+- As a result you have now Bypassed authentication and obtained a valid session token.
+
 ---
 
-## Step 5 : XSS Cross Site Scripting Example
+## Step 5 : Using Intruder for SQL Injection Testing 
+
+- Right-click on the intercepted request as above [ login page ] and select Send to Intruder.
+
+- This sends the request to Burp Suite’s Intruder module, where we’ll set up automated attacks with multiple payloads.
+
+- Go to the Intruder tab in Burp Suite.
+
+- Select the Positions sub-tab. You will see the intercepted request there.
+
+- Clear all current positions by clicking Clear§.
+
+- Now, highlight the value of the email field:
+
+- Click Add § to mark it as a position where SQL injection payloads will be inserted.
+
+- The § symbols indicate where Burp Suite will insert payloads.
+
+- Go to the Payloads sub-tab in Intruder.
+
+- In the Payload set section, you should see that Payload set 1 is selected.
+
+- This means Burp Suite will inject payloads into the first position 
+ (the email field we selected).
+
+- SQL Injection Payloads:
+
+- ' OR 1=1--
+- ' OR '1'='1'--
+- ' OR ''='
+- ' OR 1=1#
+
+- Add the above payloads one by one in the Payload Options box.
+
+- You can use predefined SQL Injection payloads by clicking Payload Options and selecting Battering ram or Sniper mode.
+
+- Alternatively, enter your own SQL injection payloads under Payloads List.
+
+- Click the Start Attack button in the top-right corner.
+
+- Burp Suite Intruder will begin sending each payload from the list into the email field and submitting the request.
+
+- After the attack finishes, you’ll see the Intruder Results screen with all the requests sent, their status codes, and response lengths.
+
+- Sort the results by clicking on the Length column. This can help identify a successful SQL Injection, as the response for a successful injection will likely have a different response length (usually indicating a successful login).
+
+- If a payload successfully bypasses the login, you might see:
+
+- HTTP Status Code: 200 OK
+
+- Response Length: Larger than failed attempts
+
+- Response Content: Look for a valid auth_token in the response, indicating successful authentication.
+
+---
+
+## Step 6 : XSS Cross Site Scripting Example
 
 - In Juice Shop, go to the "Search" field at the top of the page.
 
