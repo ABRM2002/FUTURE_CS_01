@@ -351,6 +351,9 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 ## Step 1: Set up Burp Suite and Browser Proxy :-
 
+![image](https://github.com/user-attachments/assets/20098b7b-99c1-475d-9edb-ad3217679925)
+
+
 - Start Burp Suite Community Edition on your Kali Linux VM.
 
 - Go to Proxy > Options and confirm that Burp is listening on 127.0.0.1:8080.
@@ -375,6 +378,9 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 ## Step 3 : Intercept and Analyze HTTP Requests (Example: Login Request)
 
+![image](https://github.com/user-attachments/assets/424c3ce0-d4be-4c50-9997-7abc7ff60ebd)
+
+
 - In Burp Suite, ensure Intercept is ON (found under Proxy > Intercept).
 
 - Go to the login page of OWASP Juice Shop (http://localhost:3000/#/login).
@@ -388,6 +394,9 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 ---
 
 ## Step 4 : SQL Injection Example (Manual Testing using Repeater)
+
+![image](https://github.com/user-attachments/assets/2e7d371f-69dc-4c3a-8ac0-bbfb39ba71e1)
+
 
 - After intercepting a request (e.g., the login request), right-click it and select Send to Repeater.
 
