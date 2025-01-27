@@ -497,6 +497,10 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 ![Screenshot 2025-01-27 181951](https://github.com/user-attachments/assets/7d9a4793-7e92-4fa6-9d69-ccc4381970ee)
 
+---
 
+## **Vulnerability Assessment Report** :-
+
+[Vulnerability Assessment Report Task 1 - Burp Suite.pdf](https://github.com/user-attachments/files/18558700/Vulnerability.Assessment.Report.Task.1.-.Burp.Suite.pdf)
 
 
