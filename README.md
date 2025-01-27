@@ -434,6 +434,8 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 - The § symbols indicate where Burp Suite will insert payloads.
 
+![image](https://github.com/user-attachments/assets/5eb6d696-9787-4826-b79b-ecde4ffa6185)
+
 - Go to the Payloads sub-tab in Intruder.
 
 - In the Payload set section, you should see that Payload set 1 is selected.
@@ -453,6 +455,9 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 - You can use predefined SQL Injection payloads by clicking Payload Options and selecting Battering ram or Sniper mode.
 
 - Alternatively, enter your own SQL injection payloads under Payloads List.
+
+  ![image](https://github.com/user-attachments/assets/7cc61c2b-cb36-4d19-bab9-328e6f94605c)
+
 
 - Click the Start Attack button in the top-right corner.
 
@@ -480,7 +485,7 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 
 - Enter the following XSS payload in the search field:
 
-- Payload: <script>alert('XSS')</script>
+- Payload: <script>alert('XSS')</script> or <img src="x" onerror="alert('XSS')">
 
 - Submit the search. Burp Suite will intercept the request.
 
@@ -489,6 +494,9 @@ Obtain and configure a valid SSL/TLS certificate for the server to secure web tr
 - In the Repeater tab, resend the modified request with the XSS payload.
 
 - If the application is vulnerable to Reflected XSS, the JavaScript payload will execute, and you should see a popup with the message XSS in your browser.
+
+![Screenshot 2025-01-27 181951](https://github.com/user-attachments/assets/7d9a4793-7e92-4fa6-9d69-ccc4381970ee)
+
 
 
 
